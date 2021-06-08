@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -61,15 +62,16 @@ public class WebService extends Service {
 
     private static File DIR = Environment.getExternalStorageDirectory();
     private static int HTTP_PORT = 12345;
-    private static int TRANS_TYPR = 1;
-    private static String mPath ="";
+    private static int TRANS_TYPE = 1;
+    private static InputStream inputStream ;;
 
-    public static void setTransTypr(int transTypr) {
-        TRANS_TYPR = transTypr;
+
+    public static void setTransType(int transType) {
+        TRANS_TYPE = transType;
     }
 
-    public static void setmPath(String mPath) {
-        WebService.mPath = mPath;
+    public static void setInputStream(InputStream mPath) {
+        WebService.inputStream = mPath;
     }
 
     public static void setDIR(String filePath) {
@@ -268,10 +270,10 @@ public class WebService extends Service {
     private String getIndexContent() throws IOException {
         BufferedInputStream bInputStream = null;
         try {
-            if (TRANS_TYPR == 1) {
+            if (TRANS_TYPE == 1) {
                 bInputStream = new BufferedInputStream(getAssets().open("wifi/index.html"));
             } else {
-                bInputStream = new BufferedInputStream(new FileInputStream(new File(mPath)));
+                bInputStream = new BufferedInputStream(inputStream);
             }
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
