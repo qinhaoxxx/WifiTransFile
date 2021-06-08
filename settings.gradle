@@ -1,0 +1,3 @@
+rootProject.name = "WifiTrans"
+include ':app'
+include ':transfer'
